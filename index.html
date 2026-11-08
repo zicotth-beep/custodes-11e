@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Adeptus Custodes 11e — Quick Reference</title>
+<meta name="description" content="Warhammer 40,000 11th edition Adeptus Custodes and Sisters of Silence quick reference: army rules, 13 detachments, 36 datasheets, bilingual Chinese/English, offline capable.">
+<meta name="theme-color" content="#0b0a07">
+<meta name="color-scheme" content="dark">
+<meta name="robots" content="noindex, nofollow">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="icon" href="./icon-192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="./icon-180.png">
+<link rel="apple-touch-icon" sizes="180x180" href="./icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Custodes 11e">
+<meta name="application-name" content="禁軍速查">
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" href="./app.css">
+</head>
+<body data-lang="both">
+
+<svg class="sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-crest" viewBox="0 0 24 24"><path d="M12 2.6 20 5.2v6.3c0 4.7-3.3 8.4-8 10.2-4.7-1.8-8-5.5-8-10.2V5.2L12 2.6Z"/><path d="M12 6.6v9.6M8.2 9.9h7.6"/></symbol>
+  <symbol id="i-army" viewBox="0 0 24 24"><path d="M12 3 19 5.5v5.6c0 4.2-2.9 7.6-7 9.1-4.1-1.5-7-4.9-7-9.1V5.5L12 3Z"/><path d="M12 7.4v7M9 10.4h6"/></symbol>
+  <symbol id="i-dets" viewBox="0 0 24 24"><path d="M6 3.6v16.8"/><path d="M6 4.6h11l-2.3 3.5L17 11.6H6"/></symbol>
+  <symbol id="i-units" viewBox="0 0 24 24"><rect x="4" y="3.4" width="16" height="17.2" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></symbol>
+  <symbol id="i-gloss" viewBox="0 0 24 24"><path d="M5 5.6A2.6 2.6 0 0 1 7.6 3H19v18H7.6A2.6 2.6 0 0 1 5 18.4V5.6Z"/><path d="M9.2 3v18"/></symbol>
+  <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.4"/><path d="M12 11v6M12 7.7v.9"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="10.8" cy="10.8" r="6.4"/><path d="m15.6 15.6 4.6 4.6"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="m6.5 6.5 11 11M17.5 6.5l-11 11"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="m9.5 5.5 6.5 6.5-6.5 6.5"/></symbol>
+  <symbol id="i-table" viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><path d="M12 2.2v3.6M12 18.2v3.6M2.2 12h3.6M18.2 12h3.6"/><circle cx="12" cy="12" r="1.4"/></symbol>
+</svg>
+
+<header class="topbar">
+  <div class="topbar-row">
+    <div class="brand">
+      <svg class="crest" aria-hidden="true"><use href="#i-crest"></use></svg>
+      <div class="brand-text">
+        <h1><span class="lang-zh">帝皇禁軍</span><span class="lang-en">Adeptus Custodes</span> <span class="ver">11e</span></h1>
+        <p><span class="lang-zh">規則速查</span><span class="lang-en">Quick Reference</span></p>
+      </div>
+    </div>
+    <div class="tools">
+      <button id="langToggle" class="tool-btn lang" type="button" aria-label="Switch language / 切換語言">中英</button>
+      <button id="fontMinus" class="tool-btn sq" type="button" aria-label="Smaller text / 縮小字體">A−</button>
+      <button id="fontPlus" class="tool-btn sq" type="button" aria-label="Larger text / 放大字體">A+</button>
+      <button id="tableBtn" class="tool-btn sq" type="button" aria-pressed="false" aria-label="Table mode / 戰桌模式">
+        <svg class="ico" aria-hidden="true"><use href="#i-table"></use></svg>
+      </button>
+      <button id="infoBtn" class="tool-btn sq" type="button" aria-label="About, sources and offline / 關於、來源與離線">
+        <svg class="ico" aria-hidden="true"><use href="#i-info"></use></svg>
+      </button>
+    </div>
+  </div>
+  <div class="searchwrap">
+    <svg class="search-ico" aria-hidden="true"><use href="#i-search"></use></svg>
+    <input id="search" type="search" inputmode="search" autocomplete="off" autocorrect="off"
+           spellcheck="false" placeholder="Search units, detachments, rules…" aria-label="Search / 搜尋">
+    <button id="clearSearch" class="clear" type="button" hidden aria-label="Clear search / 清除搜尋">
+      <svg class="ico" aria-hidden="true"><use href="#i-close"></use></svg>
+    </button>
+  </div>
+  <div id="netbar" class="netbar" role="status" aria-live="polite" hidden></div>
+</header>
+
+<main id="app" aria-live="polite"></main>
+
+<nav class="tabbar" id="tabbar" aria-label="Main navigation / 主要導覽">
+  <button type="button" data-tab="army">
+    <svg class="ico" aria-hidden="true"><use href="#i-army"></use></svg>
+    <span class="lang-zh">軍隊規則</span><span class="lang-en">Army</span>
+  </button>
+  <button type="button" data-tab="dets">
+    <svg class="ico" aria-hidden="true"><use href="#i-dets"></use></svg>
+    <span class="lang-zh">分隊</span><span class="lang-en">Detachments</span>
+  </button>
+  <button type="button" data-tab="units">
+    <svg class="ico" aria-hidden="true"><use href="#i-units"></use></svg>
+    <span class="lang-zh">數據卡</span><span class="lang-en">Datasheets</span>
+  </button>
+  <button type="button" data-tab="gloss">
+    <svg class="ico" aria-hidden="true"><use href="#i-gloss"></use></svg>
+    <span class="lang-zh">速查</span><span class="lang-en">Glossary</span>
+  </button>
+</nav>
+
+<div class="sheet-backdrop" id="backdrop" hidden></div>
+<section class="sheet" id="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+  <div class="sheet-head">
+    <button id="sheetClose" class="tool-btn sq" type="button" aria-label="Close / 關閉">
+      <svg class="ico" aria-hidden="true"><use href="#i-close"></use></svg>
+    </button>
+    <span id="sheetTitle" class="sheet-title"></span>
+  </div>
+  <div class="sheet-body" id="sheetBody" tabindex="-1"></div>
+</section>
+
+<div class="cmpbar" id="cmpbar" hidden>
+  <span class="cmp-count" id="cmpCount">比較 0/4</span>
+  <button type="button" class="cmp-act" data-cmpopen>
+    <span class="lang-zh">查看比較</span><span class="lang-en">View</span>
+  </button>
+  <button type="button" class="cmp-act ghost" data-cmpclear>
+    <span class="lang-zh">清除</span><span class="lang-en">Clear</span>
+  </button>
+</div>
+
+<div class="pop-backdrop" id="popBackdrop" hidden></div>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+<div class="pop" id="pop" hidden role="dialog" aria-labelledby="popTitle">
+  <div class="pop-head">
+    <strong id="popTitle"></strong>
+    <button id="popClose" class="tool-btn sq" type="button" aria-label="Close / 關閉">
+      <svg class="ico" aria-hidden="true"><use href="#i-close"></use></svg>
+    </button>
+  </div>
+  <div class="pop-body" id="popBody"></div>
+</div>
+
+<footer class="foot" id="foot">
+  <p class="lang-zh">非官方玩家速查表；規則內容以 Games Workshop 官方英文版為準，僅供個人遊戲使用。</p>
+  <p class="lang-en">Unofficial player reference. Rules remain © Games Workshop; always follow the official English publications. Personal use only.</p>
+  <p id="offlineNote" class="offline-note"></p>
+</footer>
+
+<noscript><p class="empty">This quick reference needs JavaScript. / 本速查需要 JavaScript。</p></noscript>
+
+<script src="./data.js"></script>
+<script src="./app.js"></script>
+</body>
+</html>

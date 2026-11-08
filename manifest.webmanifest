@@ -1,0 +1,22 @@
+{
+  "id": "./",
+  "name": "帝皇禁軍 11e 速查 — Adeptus Custodes",
+  "short_name": "禁軍速查",
+  "description": "Warhammer 40,000 11th edition Adeptus Custodes & Sisters of Silence quick reference: army rules, 13 detachments, 36 datasheets, bilingual, offline.",
+  "start_url": "./#/army",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait",
+  "background_color": "#0b0a07",
+  "theme_color": "#0b0a07",
+  "lang": "zh-Hant",
+  "dir": "ltr",
+  "categories": ["games", "reference", "books"],
+  "icons": [
+    { "src": "./icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "./icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "./icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "./icon-180.png", "sizes": "180x180", "type": "image/png", "purpose": "any" }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "routes": [
+    {
+      "path": "/",
+      "title": "Army Rules 軍隊規則"
+    },
+    {
+      "path": "/#/army",
+      "title": "Army Rules 軍隊規則"
+    },
+    {
+      "path": "/#/dets",
+      "title": "Detachments 分隊"
+    },
+    {
+      "path": "/#/units",
+      "title": "Datasheets 數據卡"
+    },
+    {
+      "path": "/#/gloss",
+      "title": "Glossary 術語速查"
+    },
+    {
+      "path": "/#/unit/:id",
+      "title": "Datasheet 數據卡詳情"
+    },
+    {
+      "path": "/#/det/:id",
+      "title": "Detachment 分隊詳情"
+    },
+    {
+      "path": "/listen.html",
+      "title": "Voice Monitor"
+    }
+  ]
+}

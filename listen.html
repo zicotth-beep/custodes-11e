@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>語音監聽 · 禁軍速查 Voice Monitor</title>
+<meta name="theme-color" content="#0b0a07">
+<meta name="color-scheme" content="dark">
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="./app.css">
+<style>
+  body{padding-bottom:0}
+  .vm{display:grid;grid-template-columns:minmax(320px,42%) 1fr;grid-template-rows:auto 1fr;height:100vh;height:100dvh;gap:0}
+  .vm-head{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 12px;border-bottom:1px solid var(--line2);background:linear-gradient(180deg,#100e09,#0b0a07)}
+  .vm-head h1{font-size:.95em;color:var(--gold2);letter-spacing:.04em;display:flex;align-items:center;gap:8px}
+  .vm-head h1 small{font-size:.62em;color:var(--ink3);letter-spacing:.1em}
+  .vm-ctl{display:flex;gap:6px;align-items:center;margin-left:auto;flex-wrap:wrap}
+  .vm-ctl select,.vm-ctl input[type=text]{background:var(--panel);color:var(--ink);border:1px solid var(--line2);border-radius:8px;padding:7px 9px;font:inherit;font-size:.8em}
+  .vm-btn{min-height:38px;padding:0 14px;border-radius:9px;border:1px solid var(--line2);background:var(--panel);color:var(--gold2);font-size:.82em}
+  .vm-btn.primary{background:var(--gold);border-color:var(--gold);color:#0b0a07;font-weight:700}
+  .vm-btn[disabled]{opacity:.4}
+  .vm-status{font-size:.74em;color:var(--ink3);width:100%;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .dot{width:9px;height:9px;border-radius:50%;background:var(--ink3);flex:none}
+  .dot.live{background:#96bb7c;box-shadow:0 0 0 4px rgba(150,187,124,.18)}
+  .dot.warn{background:#d4796b}
+  .vm-left{border-right:1px solid var(--line2);overflow:auto;padding:12px;display:flex;flex-direction:column;gap:12px;background:#0d0c08}
+  .vm-sec h2{font-size:.64em;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-dim);margin:0 0 6px}
+  #heard{min-height:64px;font-size:1.05em;line-height:1.6;color:var(--ink);background:#14120d;border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+  #heard .interim{color:var(--ink3)}
+  .hitcard{border:1px solid var(--gold-dim);border-left:4px solid var(--gold);border-radius:10px;background:linear-gradient(180deg,#1b1810,#14120c);padding:11px 12px;margin-bottom:9px}
+  .hitcard .nm{color:var(--gold2);font-weight:700;font-size:1.02em}
+  .hitcard .en{color:var(--ink3);font-size:.8em;font-style:italic}
+  .hitcard .kw{font-size:.72em;color:var(--ink3);margin-top:3px}
+  .hitcard .tx{font-size:.86em;color:var(--ink2);margin-top:7px;line-height:1.6}
+  .hitcard .acts{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+  .hint{font-size:.74em;color:var(--ink3);line-height:1.65}
+  .hint b{color:var(--gold2)}
+  #frame{width:100%;height:100%;border:0;background:var(--bg)}
+  .vm-right{position:relative;min-height:0}
+  @media (max-width:820px){
+    .vm{grid-template-columns:1fr;grid-template-rows:auto auto 1fr}
+    .vm-left{border-right:0;border-bottom:1px solid var(--line2);max-height:42vh}
+    #frame{height:58vh}
+  }
+</style>
+</head>
+<body>
+<div class="vm">
+  <header class="vm-head">
+    <h1>🎙 語音監聽 <small>VOICE MONITOR · 實驗版</small></h1>
+    <div class="vm-ctl">
+      <select id="lang" aria-label="語音語言">
+        <option value="zh-HK">廣東話</option>
+        <option value="zh-TW">國語</option>
+        <option value="en-US">English</option>
+      </select>
+      <button id="startBtn" class="vm-btn primary" type="button">開始監聽</button>
+      <button id="stopBtn" class="vm-btn" type="button" disabled>停止</button>
+      <label class="hint"><input id="autoOpen" type="checkbox" checked> 自動開啟命中</label>
+    </div>
+    <div class="vm-status">
+      <span class="dot" id="dot"></span><span id="status">未開始</span>
+      <span id="note"></span>
+    </div>
+  </header>
+
+  <section class="vm-left">
+    <div class="vm-sec">
+      <h2>聽到 / Heard</h2>
+      <div id="heard"><span class="interim">…</span></div>
+    </div>
+    <div class="vm-sec">
+      <h2>手動輸入（測試或無麥克風）</h2>
+      <input id="manual" type="text" placeholder="輸入關鍵詞，例如：劈砍 / 圖拉真 / Anti" style="width:100%">
+    </div>
+    <div class="vm-sec">
+      <h2>命中 / Matches</h2>
+      <div id="hits"><p class="hint">講出單位、武器、分隊或技能名稱（例如「圖拉真」「守望者之斧」「劈砍」「王座守衛」），命中就會喺右邊直接打開。</p></div>
+    </div>
+    <div class="vm-sec">
+      <h2>限制 / Limits</h2>
+      <p class="hint">
+        只支援 <b>桌面 Chrome / Edge</b>（Android Chrome 亦可）。<b>iPhone 的 Safari 不支援</b>持續語音辨識，所以呢頁要用電腦或平板開，並容許麥克風。<br>
+        收音會連續進行，環境嘈吵時誤判會增加；可用「自動開啟命中」關掉自動跳轉，只顯示命中卡。
+      </p>
+    </div>
+  </section>
+
+  <section class="vm-right">
+    <iframe id="frame" src="./index.html#/army" title="禁軍速查"></iframe>
+  </section>
+</div>
+
+<script src="./data.js"></script>
+<script src="./listen.js"></script>
+</body>
+</html>
